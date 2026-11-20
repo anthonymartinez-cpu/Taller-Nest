@@ -1,7 +1,31 @@
-export interface Foto {
-    id: number,
-    titulo: string;
-    descripcion?: string;
-    calificacion: number;
-}
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
+@Entity('fotos')
+export class Foto {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ length: 100 })
+  titulo: string;
+
+  @Column({ type: 'text', nullable: true })
+  descripcion: string | null;
+
+  @Column({ type: 'real', default: 0 })
+  calificacion: number;
+
+  @Column()
+  ruta: string; // URL de la imagen
+
+  @CreateDateColumn()
+  creadoEn: Date;
+
+  @UpdateDateColumn()
+  actualizadoEn: Date;
+}
