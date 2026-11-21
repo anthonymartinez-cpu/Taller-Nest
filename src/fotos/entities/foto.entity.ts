@@ -23,6 +23,9 @@ export class Foto {
   @Column()
   ruta: string; // URL de la imagen
 
+  @Column({ type: 'varchar', nullable: true })
+  fotografo?: string | null;
+
   @CreateDateColumn()
   creadoEn: Date;
 
