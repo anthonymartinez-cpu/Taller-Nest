@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Foto } from './entities/foto.entity.js';
 import { FotosController } from './fotos.controller.js';
 import { FotosService } from './fotos.service.js';
+import { Etiqueta } from './entities/etiqueta.entity.js';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Foto])],
@@ -10,4 +11,14 @@ import { FotosService } from './fotos.service.js';
   providers: [FotosService],
   exports: [FotosService],
 })
-export class FotosModule {}
+
+
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([Foto, Etiqueta])
+  ],
+  controllers: [FotosController],
+  providers: [FotosService],
+  exports: [Foto]
+})
+export class FotosModule{}
